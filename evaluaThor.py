@@ -133,9 +133,9 @@ while stop_option != "exit":
     #Here we are establish the main menu
     print("\nWhat do you whant to do?:")
     print ("Type 'R' to instal R software (only foy linux users)")
-    print("Type 'matrix' to see all the posible matrix you can use")
     print("Type 'help' to obtain all the suplementary material: power point, video and example .txt fasta files")
     print("Type 'use' to show how to use the software in other computer (only foy linux users)")
+    print("Type 'matrix' to see all the posible matrix you can use")
     print("Type 'score' to obtain the ras score for only 1 alignment")
     print("Type 'compare' to compare different alignment matrix")
     print("Type 'exit' to quit the program\n")
