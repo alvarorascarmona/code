@@ -149,7 +149,7 @@ while stop_option != "exit":
 
     if main_answer == "help":
         print("\nIt is necessary to have git installed")
-        print("Do you have git installed in your computer?")
+        print("Do you whant to install git in your system?")
         install_aswer = input("Type 'yes' (only foy linux users) or 'no': ")
         if install_aswer == "yes":
             os.system("sudo apt-get install git")
