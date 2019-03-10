@@ -85,7 +85,7 @@ def ras_score (seq1,seq2,matrix_of_interest,open_penalty,extend_penalty):
     result = float (result)
     return result
 
-
+#Function mainly use in the "comparison_function" function
 def matrix_format (number_of_matrix):
     '''
     This function returns the matrix you whant to compare in the apropiate format.
@@ -183,21 +183,27 @@ while stop_option != "exit":
         os.system("sudo apt -get install r-base")
         os.system("sudo -i R")
 
+    #We can divide this "help" can be divide in two parts 
     if main_answer == "help":
+        #The firt part ask the user if he/she has git istalled
+        #If not, the software install it: due to the comand line for the istalation only works in linux.
         print("\nIt is necessary to have git installed")
         print("Do you whant to install git in your system?")
         install_aswer = input("Type 'yes' (only foy linux users) or 'no': ")
         if install_aswer == "yes":
             os.system("sudo apt-get install git")
             print("Git has been installed correctly")
+        #The second part make a "git clone" of the repository where is all the suplementary material
         os.system("git clone https://github.com/alvarorascarmona/suplementary_material.git")
         print("\nThe suplementary material has downloaded correctly")
         print("Now you have a new directory called 'suplementary_material' with all the files")
+        #Also shows all the directories that are inside the working one (you should see a new one called "suplementary_material")
         print("Your directories:")
         os.system("ls -l")
         print("\nWhat have you download:")
         os.system("ls -l suplementary_material")
 
+    #With the "use" option the sofware shows the user the bash comand lines that has to type in the other computer where he/she whants to install it.
     if main_answer == "use":
         print("\nFor this, in the other computer it is necesary to have 'git' installed")
         print("To make the git installation apply this code: 'sudo apt-get install git'")
@@ -209,6 +215,7 @@ while stop_option != "exit":
     #With this option we can see all substitution matrix we can use 
     if main_answer == "matrix":
         posible_matrix = dir(MatrixInfo)
+        #Option -> Only is saved the different matrix the user can use (from "dir(MatrixInfo)")
         options = posible_matrix[9:12] + posible_matrix[12:28] + posible_matrix[39:-3]
         print("\nWhat dou you whant to do?")
         print("Type 'A' to see all the posible matrix")
@@ -235,6 +242,7 @@ while stop_option != "exit":
         print("\nDo you have the first sequence in a .txt fasta file?")
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
+            #It allows to read the sequence from a fasta file (apply to al the sequence inputs)
             seq1 = ""
             file_input = input("\nIndicate the name of the file (has to be in the same directory): ")
             with open(file_input) as f:
@@ -242,6 +250,7 @@ while stop_option != "exit":
                     if not line.startswith(">"):
                         seq1 += line.strip()
         if file_aswer == "no":
+            #Also it allows to type by hand the sequence you whant to use (apply to al the sequence inputs)
             seq1 = input("\nAdd the first sequence (in capital letters)\n")
         print("\nDo you have the second sequence in a .txt fasta file?")
         file_aswer = input("Type 'yes' or 'no': ")
@@ -255,15 +264,17 @@ while stop_option != "exit":
         if file_aswer == "no":
             seq2 = input("\nAdd the first sequence (in capital letters)\n")
         z = input("\nWhat matrix are you going to use? (in lower case): ")
+        #Obtention the information from the "mapping" dictionary
         matrix_of_interest = mappings[z]
         open_penalty = int(input("\nChose the open penalty (value lower than 0): "))
         extend_penalty = int(input("\nChose the extend penalty (value lower than 0): "))
         print("\nYour score is of:")
+        #Aplication of the "ras_score" function
         print(ras_score(seq1,seq2,matrix_of_interest,open_penalty,extend_penalty))
         print("\nDo you whant to see the alignment?")
         answer = input("Type 'yes' or 'no': ")
-        #Here we can see all the alignment performed
         if answer == "yes":
+            #Here we can see ALL the alignment performed
             alignment_problem = pairwise2.align.globalds(seq1, seq2, matrix_of_interest, open_penalty, extend_penalty)
             for i in range(len(alignment_problem)):
                 print(pairwise2.format_alignment(*alignment_problem[i]))
@@ -300,11 +311,12 @@ while stop_option != "exit":
         print(x)
         print("\nDo you whant to see the statistics of the scores?")
         see_statistics = input("Type 'yes' or 'no': ")
+        #Here we create a .txt with the output of the "comparison_function"
+        #This .txt will be use if the R code is run
         with open("tabla_scores.txt", "w") as y:
             y.write(str(x))
         
         #Here, with R code, we can obtain the statistics of the dataframe 
-        #(output of the function 'comparison_function')
         if see_statistics == "yes":
             codigo_summary = """
             wd <- getwd()
@@ -331,14 +343,20 @@ while stop_option != "exit":
             print ("Please, check the work directory you are working in.")
             print ("You should have a PDF called 'Scores_histogram.pdf'.")
 
-        path = os.getcwd() 
-        y = path + "/" + "tabla_scores.txt"
-        os.remove(y) 
+        #The .txt generated can be saved in a .txt file
+        print("\nDo you whant to save the results (matrix used vs score) on a .txt file?")
+        save_option = input("Type 'yes' or 'no': ")
+        if save_option == "no":
+            #With this code lines we delete the .txt generated before
+            path = os.getcwd() 
+            y = path + "/" + "tabla_scores.txt"
+            os.remove(y)
+        else: 
+            print("\nThe file has been corretly saved with the 'tabla_scores.txt' name")
+            print("Please, check your working directory")
 
-    #Here we let the user to get out of the program (get out of the while)
+    #Here we let the user to get out of the program (get out of the while loop)
     if main_answer == "exit":
-        #Here we stablish a check point 
-        #(if the user do not whant to quit the program)
         print("\nAre you sure you whant to exit?")
         print("Type 'yes' or 'no'\n ")
         second_oportnity = input()
