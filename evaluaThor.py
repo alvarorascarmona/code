@@ -1,5 +1,41 @@
 #! /usr/bin/env python3
 
+##################################################
+
+
+#   __________________________________
+#   |                                |
+#   |                                |
+#   |           evaluaThor           |
+#   |                                |
+#   |                                |
+#   |________________________________|
+#               |      /|
+#               |     / |
+#               |    /  |
+#               |   /   |
+#               |  /    |
+#               | /     |
+#               |/      |
+#               |      /|
+#               |     / |
+#               |    /  |
+#               |   /   |
+
+
+##################################################
+
+# Technical data:
+## Author name: Álvaro Ras Carmona
+## Project name: Standarization of biological measurements
+## Software (code) name: enaluaThor
+## Version: 1.0.0 
+## Python version: Python 3.7.2
+## Sysitem version (operation system used to develop evaluaThor): macOS High Sierra version 10.13.6 (17G65) 
+## To run the code (2 options): ./evaluaThor.py OR python3 evaluaThor.py
+
+############################################
+
 '''
 I tried to make the aplication the more interactive as posible.
 That means that all along the code there is going to be a lot of prints and input.
