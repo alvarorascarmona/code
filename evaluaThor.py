@@ -136,7 +136,7 @@ def comparison_function (seqA,seqB,open_penalty2,extend_penalty2,number_of_matri
 ###THE MAIN CODE###
 
 
-print ("\nWlcome to evaluaThor software")
+print ("\nWelcome to evaluaThor software")
 print ("IMPORTANT: You will need 'R' to use this software\n")
 print("It is preferable to have 'git' installed")
 stop_option = ""
