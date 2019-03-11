@@ -137,8 +137,8 @@ def comparison_function (seqA,seqB,open_penalty2,extend_penalty2,number_of_matri
 
 
 print ("\nWelcome to evaluaThor software")
-print ("IMPORTANT: You will need 'R' to use this software\n")
-print("It is preferable to have 'git' installed")
+print ("IMPORTANT: You will need 'R' to use this software")
+print("It is preferable to have 'git' installed\n")
 stop_option = ""
 
 #Here we stablish all the matrix the user can apply
