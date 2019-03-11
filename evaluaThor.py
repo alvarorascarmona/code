@@ -212,7 +212,7 @@ while stop_option != "exit":
     if main_answer == "use":
         print("\nFor this, in the other computer it is necesary to have 'git' installed")
         print("To make the git installation apply this code (only for linux users): 'sudo apt-get install git'")
-        print("To use this software in other compute follow the follow code:")
+        print("To use this software in other compute follow the following code:")
         print("'git clone https://github.com/alvarorascarmona/code.git'")
         print("'cd code'")
         print("'./evaluaThor.py'")
