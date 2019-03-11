@@ -21,6 +21,10 @@
 #               |     / |
 #               |    /  |
 #               |   /   |
+#               |  /    |
+#               | /     |
+#               |/      |
+#               |_______|
 
 
 ##################################################
@@ -28,8 +32,8 @@
 # Technical data:
 ## Author name: Álvaro Ras Carmona
 ## Project name: Standarization of biological measurements
-## Software (code) name: enaluaThor
-## Version: 1.0.0 
+## Software (code) name: evaluaThor
+## Version: 1.0.5 
 ## Python version: Python 3.7.2
 ## Sysitem version (operation system used to develop evaluaThor): macOS High Sierra version 10.13.6 (17G65) 
 ## To run the code (2 options): ./evaluaThor.py OR python3 evaluaThor.py
@@ -37,13 +41,13 @@
 ############################################
 
 '''
-I tried to make the aplication the more interactive as posible.
-That means that all along the code there is going to be a lot of prints and input.
-By this way, we are alking all the time to the user what he/she wants to do
+I tried to make the application the more interactive as posible.
+That means that all along the code there is going to be a lot of prints and inputs.
+By this way, we are asking all the time to the user what he/she wants to do.
 '''
 
 #################################################
-#The first thing we are doing is to import the different packages#
+#The first thing we are doing is to import the different packages
 from Bio import pairwise2
 from Bio.SubsMat import MatrixInfo
 from Bio.SubsMat.MatrixInfo import *
@@ -64,7 +68,7 @@ import os
 ###FUNCTIONS###
 def ras_score (seq1,seq2,matrix_of_interest,open_penalty,extend_penalty):
     '''
-    This function return the ras score (score invented by the autor of the script).
+    This function returns the Ras score (score invented by the autor of the script).
     It reurns a number: type = int
     What are the inputs:
         seq1 and seq2: The sequences to aling (from which score will calculate the ras score).They have to be strings.
@@ -82,15 +86,15 @@ def ras_score (seq1,seq2,matrix_of_interest,open_penalty,extend_penalty):
     xf = alignment_problem [0]
     xf = xf[2]
     result = ((((xf*x2)/(x1*x2))+((xf*x1)/(x1*x2)))/2)
-    result = float (result)
+    result = float(result)
     return result
 
 #Function mainly use in the "comparison_function" function
 def matrix_format (number_of_matrix):
     '''
-    This function returns the matrix you whant to compare in the apropiate format.
-    It ask the user what matrix is going to aplicate and transform into a list.
-    The only argument that needs is how many matrix are you going to compare (int type).
+    This function returns the score matrixes you whant to compare in the apropiate format.
+    It ask the user what score matrixes are going to aplicate and transform into a list.
+    The only argument that needs is how many score matrixes are you going to compare (int type).
     int -> list
     '''
     matrix_comparison = ""
@@ -104,13 +108,13 @@ def matrix_format (number_of_matrix):
 
 def comparison_function (seqA,seqB,open_penalty2,extend_penalty2,number_of_matrix):
     '''
-    This function is used to compare diferent matrix of alignment.
+    This function is used to compare diferent score matrixes.
     It returns a data frame.
     What are the inputs:
         seq1 and seq2: The sequences to aling (from which score will calculate the ras score).They have to be strings.
         open penalty and extend penalty: Have to be of int type.
-        number_of_matrix: It referes to how many alignment matrix you are going to use. It has to ve a number (type int).
-    Output: A dataframe with two columns (The name of the matrix that you are comparing and the score for each alignment matrix)
+        number_of_matrix: It referes to how many score matrixes you are going to use. It has to ve a number (type int).
+    Output: A dataframe with two columns (The name of the score matrix that you are comparing and the Ras score for each alignment matrix)
     '''
     matrix_use = matrix_format(number_of_matrix)
     result = ""
@@ -133,7 +137,8 @@ def comparison_function (seqA,seqB,open_penalty2,extend_penalty2,number_of_matri
 
 
 print ("\nWlcome to evaluaThor software")
-print ("IMPORTANT: You will need R to use this software\n")
+print ("IMPORTANT: You will need 'R' to use this software\n")
+print("It is preferable to have 'git' installed")
 stop_option = ""
 
 #Here we stablish all the matrix the user can apply
@@ -169,11 +174,11 @@ while stop_option != "exit":
     #Here we are establish the main menu
     print("\nWhat do you whant to do?:")
     print ("Type 'R' to instal R software (only foy linux users)")
-    print("Type 'help' to obtain all the suplementary material: power point, video and example .txt fasta files")
-    print("Type 'use' to show how to use the software in other computer (only foy linux users)")
+    print("Type 'help' to obtain all the suplementary material: power point, video and example .txt fasta files (only foy linux/macOS users)")
+    print("Type 'use' to show how to use the software in other computer (only foy linux/macOS users)")
     print("Type 'matrix' to see all the posible matrix you can use")
     print("Type 'score' to obtain the ras score for only 1 alignment")
-    print("Type 'compare' to compare different alignment matrix")
+    print("Type 'compare' to compare the different score matrixes")
     print("Type 'exit' to quit the program\n")
     main_answer = input ()
 
@@ -189,7 +194,7 @@ while stop_option != "exit":
         #If not, the software install it: due to the comand line for the istalation only works in linux.
         print("\nIt is necessary to have git installed")
         print("Do you whant to install git in your system?")
-        install_aswer = input("Type 'yes' (only foy linux users) or 'no': ")
+        install_aswer = input("Type 'yes' (only for linux users) or 'no': ")
         if install_aswer == "yes":
             os.system("sudo apt-get install git")
             print("Git has been installed correctly")
@@ -206,7 +211,7 @@ while stop_option != "exit":
     #With the "use" option the sofware shows the user the bash comand lines that has to type in the other computer where he/she whants to install it.
     if main_answer == "use":
         print("\nFor this, in the other computer it is necesary to have 'git' installed")
-        print("To make the git installation apply this code: 'sudo apt-get install git'")
+        print("To make the git installation apply this code (only for linux users): 'sudo apt-get install git'")
         print("To use this software in other compute follow the follow code:")
         print("'git clone https://github.com/alvarorascarmona/code.git'")
         print("'cd code'")
@@ -215,17 +220,17 @@ while stop_option != "exit":
     #With this option we can see all substitution matrix we can use 
     if main_answer == "matrix":
         posible_matrix = dir(MatrixInfo)
-        #Option -> Only is saved the different matrix the user can use (from "dir(MatrixInfo)")
+        #Option -> Only is saved the different score matrixes the user can use (from "dir(MatrixInfo)")
         options = posible_matrix[9:12] + posible_matrix[12:28] + posible_matrix[39:-3]
-        print("\nWhat dou you whant to do?")
+        print("\nWhat do you whant to do?")
         print("Type 'A' to see all the posible matrix")
         print("Type 'B' to see what benner, blosum or PAM matrix there are")
-        print("Type 'C' to see a specific matrix values")
+        print("Type 'C' to see the specific values of a score matrix")
         user_anwer = input ()
         if user_anwer == "A":
             print(options)
         if user_anwer == "B":
-            print("\nExactly, in what matrix you whant to focus?")
+            print("\nExactly, in what matrix do you whant to focus?")
             user_anwer2 = input()
             if user_anwer2 == "benner":
                     print(posible_matrix [9:12])
@@ -237,14 +242,14 @@ while stop_option != "exit":
             user_anwer3 = input("\nIndicate which one (in lower case):")
             print(SubsMat.SeqMat(mappings[user_anwer3]))
 
-    #With this option it calculate the ras score for one alignment
+    #With this option it calculate the Ras score for one alignment
     if main_answer == "score":
         print("\nDo you have the first sequence in a .txt fasta file?")
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             #It allows to read the sequence from a fasta file (apply to al the sequence inputs)
             seq1 = ""
-            file_input = input("\nIndicate the name of the file (has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -256,13 +261,13 @@ while stop_option != "exit":
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seq2 = ""
-            file_input = input("\nIndicate the name of the file (has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
                         seq2 += line.strip()
         if file_aswer == "no":
-            seq2 = input("\nAdd the first sequence (in capital letters)\n")
+            seq2 = input("\nAdd the second sequence (in capital letters)\n")
         z = input("\nWhat matrix are you going to use? (in lower case): ")
         #Obtention the information from the "mapping" dictionary
         matrix_of_interest = mappings[z]
@@ -271,21 +276,21 @@ while stop_option != "exit":
         print("\nYour score is of:")
         #Aplication of the "ras_score" function
         print(ras_score(seq1,seq2,matrix_of_interest,open_penalty,extend_penalty))
-        print("\nDo you whant to see the alignment?")
+        print("\nDo you whant to see the alignment/alignments?")
         answer = input("Type 'yes' or 'no': ")
         if answer == "yes":
-            #Here we can see ALL the alignment performed
+            #Here we can see ALL the alignments performed
             alignment_problem = pairwise2.align.globalds(seq1, seq2, matrix_of_interest, open_penalty, extend_penalty)
             for i in range(len(alignment_problem)):
                 print(pairwise2.format_alignment(*alignment_problem[i]))
 
-    #With this option we obtain the different scores for the different matrix
+    #With this option we obtain the different scores for the different score matrixes
     if main_answer == "compare":
         print("\nDo you have the first sequence in a .txt fasta file?")
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seqA = ""
-            file_input = input("\nIndicate the name of the file (has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -296,13 +301,13 @@ while stop_option != "exit":
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seqB = ""
-            file_input = input("\nIndicate the name of the file (has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
                         seqB += line.strip()
         if file_aswer == "no":
-            seqB = input("\nAdd the first sequence (in capital letters)\n")
+            seqB = input("\nAdd the second sequence (in capital letters)\n")
         open_penalty2 = int(input("\nChose the open penalty (value lower than 0): "))
         extend_penalty2 = int(input("\nChose the extend penalty (value lower than 0): "))
         number_of_matrix = int(input("\nHow many alignment matrix do you whant to compare?: "))
@@ -340,11 +345,11 @@ while stop_option != "exit":
             """
             print(ro.r(codigo_plot))
             print ("\nYour plot has been correctly generated.")
-            print ("Please, check the work directory you are working in.")
+            print ("Please, check the your working directory.")
             print ("You should have a PDF called 'Scores_histogram.pdf'.")
 
         #The .txt generated can be saved in a .txt file
-        print("\nDo you whant to save the results (matrix used vs score) on a .txt file?")
+        print("\nDo you whant to save the results (score matrixes used vs Ras scores) on a .txt file?")
         save_option = input("Type 'yes' or 'no': ")
         if save_option == "no":
             #With this code lines we delete the .txt generated before
