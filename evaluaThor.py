@@ -178,7 +178,7 @@ while stop_option != "exit":
     print("Type 'use' to show how to use the software in other computer (only foy linux/macOS users)")
     print("Type 'matrix' to see all the posible matrix you can use")
     print("Type 'score' to obtain the Ras score for only 1 score matrix")
-    print("Type 'compare' to compare the different score matrixes")
+    print("Type 'compare' to compare the differents Ras scores")
     print("Type 'exit' to quit the program\n")
     main_answer = input ()
 
