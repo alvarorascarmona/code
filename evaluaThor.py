@@ -362,7 +362,7 @@ while stop_option != "exit":
 
     #Here we let the user to get out of the program (get out of the while loop)
     if main_answer == "exit":
-        print("\nAre you sure you whant to exit?")
+        print("\nAre you sure you want to exit?")
         print("Type 'yes' or 'no'\n ")
         second_oportnity = input()
         if second_oportnity == "yes":
