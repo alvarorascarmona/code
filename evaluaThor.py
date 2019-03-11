@@ -177,7 +177,7 @@ while stop_option != "exit":
     print("Type 'suplement' to obtain all the suplementary material: power point, video and example .txt fasta files (only foy linux/macOS users)")
     print("Type 'use' to show how to use the software in other computer (only foy linux/macOS users)")
     print("Type 'matrix' to see all the posible matrix you can use")
-    print("Type 'score' to obtain the ras score for only 1 alignment")
+    print("Type 'score' to obtain the Ras score for only 1 score matrix")
     print("Type 'compare' to compare the different score matrixes")
     print("Type 'exit' to quit the program\n")
     main_answer = input ()
@@ -273,7 +273,7 @@ while stop_option != "exit":
         matrix_of_interest = mappings[z]
         open_penalty = int(input("\nChose the open penalty (value lower than 0): "))
         extend_penalty = int(input("\nChose the extend penalty (value lower than 0): "))
-        print("\nYour score is of:")
+        print("\nYour Ras score is of:")
         #Aplication of the "ras_score" function
         print(ras_score(seq1,seq2,matrix_of_interest,open_penalty,extend_penalty))
         print("\nDo you whant to see the alignment/alignments?")
