@@ -33,7 +33,7 @@
 ## Author name: Álvaro Ras Carmona
 ## Project name: Standarization of biological measurements
 ## Software (code) name: evaluaThor
-## Version: 1.0.5 
+## Version: 1.1.0 
 ## Python version: Python 3.7.2
 ## Sysitem version (operation system used to develop evaluaThor): macOS High Sierra version 10.13.6 (17G65) 
 ## To run the code (2 options): ./evaluaThor.py OR python3 evaluaThor.py
@@ -174,7 +174,7 @@ while stop_option != "exit":
     #Here we are establish the main menu
     print("\nWhat do you whant to do?:")
     print ("Type 'R' to instal R software (only foy linux users)")
-    print("Type 'help' to obtain all the suplementary material: power point, video and example .txt fasta files (only foy linux/macOS users)")
+    print("Type 'suplement' to obtain all the suplementary material: power point, video and example .txt fasta files (only foy linux/macOS users)")
     print("Type 'use' to show how to use the software in other computer (only foy linux/macOS users)")
     print("Type 'matrix' to see all the posible matrix you can use")
     print("Type 'score' to obtain the ras score for only 1 alignment")
@@ -188,8 +188,8 @@ while stop_option != "exit":
         os.system("sudo apt -get install r-base")
         os.system("sudo -i R")
 
-    #We can divide this "help" can be divide in two parts 
-    if main_answer == "help":
+    #We can divide this "suplement" can be divide in two parts 
+    if main_answer == "suplement":
         #The firt part ask the user if he/she has git istalled
         #If not, the software install it: due to the comand line for the istalation only works in linux.
         print("\nIt is necessary to have git installed")
@@ -249,7 +249,7 @@ while stop_option != "exit":
         if file_aswer == "yes":
             #It allows to read the sequence from a fasta file (apply to al the sequence inputs)
             seq1 = ""
-            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file. If it is not in the same directory, indicate the path: ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -261,7 +261,7 @@ while stop_option != "exit":
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seq2 = ""
-            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file. If it is not in the same directory, indicate the path: ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -290,7 +290,7 @@ while stop_option != "exit":
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seqA = ""
-            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file. If it is not in the same directory, indicate the path: ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -301,7 +301,7 @@ while stop_option != "exit":
         file_aswer = input("Type 'yes' or 'no': ")
         if file_aswer == "yes":
             seqB = ""
-            file_input = input("\nIndicate the name of the file (it has to be in the same directory): ")
+            file_input = input("\nIndicate the name of the file. If it is not in the same directory, indicate the path: ")
             with open(file_input) as f:
                 for line in f:
                     if not line.startswith(">"):
@@ -344,9 +344,9 @@ while stop_option != "exit":
             dev.off()
             """
             print(ro.r(codigo_plot))
-            print ("\nYour plot has been correctly generated.")
-            print ("Please, check the your working directory.")
-            print ("You should have a PDF called 'Scores_histogram.pdf'.")
+            print("\nYour plot has been correctly generated.")
+            print("Please, check the your working directory.")
+            print("You should have a PDF called 'Scores_histogram.pdf'.")
 
         #The .txt generated can be saved in a .txt file
         print("\nDo you whant to save the results (score matrixes used vs Ras scores) on a .txt file?")
@@ -369,6 +369,7 @@ while stop_option != "exit":
             stop_option = "exit"
 
 
-print ("\nGoodbye")
+print("\nGoodbye")
+
       
 #################################################
